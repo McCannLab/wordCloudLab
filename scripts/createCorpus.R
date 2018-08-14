@@ -21,7 +21,7 @@ stopwords_pers <-  c(
   "gravel", "des", "although", "aij", "clearly", "lett",
   "res", "thuiller", "biol", "les", "une", "que", "dans", "son", "etre", "est",
   "qui", "within", "per", "vol", "well", "used", "use", "nat", "iew", "less",
-  "usa", "iii", "fcl", "utc"
+  "usa", "iii", "fcl", "utc", "among", "web", "webs", "sci", "log"
   )
 docs %<>% tm_map(content_transformer(tolower))
 docs %<>% tm_map(removeNumbers)
@@ -36,8 +36,11 @@ docs %<>% tm_map(substit, from="probabilities", to="probability")
 docs %<>% tm_map(substit, from="probabilistic", to="probability")
 docs %<>% tm_map(substit, from="interactions", to="interaction")
 docs %<>% tm_map(substit, from="theories", to="theory")
-docs %<>% tm_map(substit, from="network ", to="networks ")
-docs %<>% tm_map(substit, from="webs", to= "web")
+docs %<>% tm_map(substit, from="networks", to="network")
+docs %<>% tm_map(substit, from="lakes", to="lake")
+docs %<>% tm_map(substit, from="lake", to="lakes")
+docs %<>% tm_map(substit, from="fishes", to="fish")
+docs %<>% tm_map(substit, from="communities", to= "community")
 # docs %<>% tm_map(substit, from="web", to= "food web")
 docs %<>% tm_map(substit, from="distribution ", to="distributions ")
 docs %<>% tm_map(substit, from="ecol ", to="ecology ")
@@ -50,22 +53,26 @@ datdoc <- data.frame(word = names(freq), freq = freq)
 datdoc <- datdoc[rev(order(datdoc$freq)), ]
 datext <- data.frame(
   word = c("Dynamics", "theory", "ODE", "Mathematica", "Julia"),
-  freq = 100*c(1, 1, .3, .1, .1)
+  freq = 500*c(1, 1, .3, .2, .2)
   )
 ## Combine the dataset / order and keeb the 500 more frequent words
 dat <- rbind(datext, datdoc)
-dat <- dat[rev(order(dat$freq)),]
-dat <- dat[1:800,]
+
 
 id <- which(dat$word == "mccann")
-dat[id, "word"] <- "Food Webs"
+dat[id, "word"] <- "McCann"
+dat[id, "freq"] <- 1000
 
-dat[which(dat$word == "food"), "word"] <- "Food Webs"
-dat[which(dat$word == "web"), "freq"] <- 10
-
+id <- which(dat$word == "food")
+dat[id, "word"] <- "foodwebs"
+dat[id, "freq"] <- 2400
 
 ## Weird punctutation..
 id <- which(!grepl("[[:alpha:]]", dat$word))
 dat <- dat[-id, ]
 
+##
+dat <- dat[rev(order(dat$freq)),]
+dat <- dat[1:800,]
+head(dat)
 saveRDS(dat, file = "data/corpusMcCann.rds")

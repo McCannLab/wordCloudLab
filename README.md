@@ -15,6 +15,10 @@ A word cloud for the lab
 the [*Coregonus hoyi* silouhette image available on PHYLOPIC](http://phylopic.org/name/abd8b928-8ae8-437a-9988-17ec358043b7).
 
 
-## Result
+## Results
 
 ![](img/wordCloudMC.png)
+
+![](img/wordCloudMC_1.png)
+
+![](img/wordCloudMC_2.png)

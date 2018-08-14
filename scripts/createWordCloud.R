@@ -12,6 +12,8 @@ library(wordcloud2)
 dat <- readRDS("data/corpusMcCann.rds")[-c(1,2),]
 wc_aut <- wordcloud2(dat, figPath="img/Coregonus-hoyi.png", size = 2,
   color=rep(c(rep(1, 10), "#2a8abf"), length = 700), backgroundColor="white")
+# wc_aut <- wordcloud2(dat, figPath="img/LakeTrout.png", size = 2,
+#   color=rep(c(rep(1, 10), "#b55fa7"), length = 700), backgroundColor="white")
 wc_aut
 
 ## save
