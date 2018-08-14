@@ -20,7 +20,8 @@ stopwords_pers <-  c(
   "first", "will", "one", "two", "three", "fig", "tab", "eqn", "therefore",
   "gravel", "des", "although", "aij", "clearly", "lett",
   "res", "thuiller", "biol", "les", "une", "que", "dans", "son", "etre", "est",
-  "qui", "within", "per", "vol", "well", "used", "use"
+  "qui", "within", "per", "vol", "well", "used", "use", "nat", "iew", "less",
+  "usa", "iii", "fcl", "utc"
   )
 docs %<>% tm_map(content_transformer(tolower))
 docs %<>% tm_map(removeNumbers)
@@ -54,12 +55,17 @@ datext <- data.frame(
 ## Combine the dataset / order and keeb the 500 more frequent words
 dat <- rbind(datext, datdoc)
 dat <- dat[rev(order(dat$freq)),]
-dat <- dat[1:700,]
+dat <- dat[1:800,]
 
 id <- which(dat$word == "mccann")
 dat[id, "word"] <- "Food Webs"
 
 dat[which(dat$word == "food"), "word"] <- "Food Webs"
 dat[which(dat$word == "web"), "freq"] <- 10
+
+
+## Weird punctutation..
+id <- which(!grepl("[[:alpha:]]", dat$word))
+dat <- dat[-id, ]
 
 saveRDS(dat, file = "data/corpusMcCann.rds")

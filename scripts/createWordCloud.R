@@ -9,7 +9,7 @@ library(wordcloud2)
 ### NB: there is an issue with the use of mask, so you need to refresh one time
 ### to get wordcloud... which I guess prevent webshot from
 ### working well...
-data <- readRDS("data/corpusMcCann.rds")
+dat <- readRDS("data/corpusMcCann.rds")[-c(1,2),]
 wc_aut <- wordcloud2(dat, figPath="img/Coregonus-hoyi.png", size = 2,
   color=rep(c(rep(1, 10), "#2a8abf"), length = 700), backgroundColor="white")
 wc_aut
