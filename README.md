@@ -22,3 +22,13 @@ the [*Coregonus hoyi* silouhette image available on PHYLOPIC](http://phylopic.or
 ![](img/wordCloudMC_1.png)
 
 ![](img/wordCloudMC_2.png)
+
+![](img/wordCloudMC_3.png)
+
+![](img/wordCloudMC_4.png)
+
+![](img/wordCloudMC_5.png)
+
+![](img/wordCloudMC_6.png)
+
+![](img/wordCloudMC_7.png)
